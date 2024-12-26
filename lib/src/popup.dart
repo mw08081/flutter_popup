@@ -35,8 +35,10 @@ class CustomPopup extends StatelessWidget {
     final renderBox = anchor.findRenderObject() as RenderBox?;
     if (renderBox == null) return;
     final offset = renderBox.localToGlobal(renderBox.paintBounds.topLeft);
+    final adjustedOffset = offset.translate(0, -75);
+
     Navigator.of(context).push(_PopupRoute(
-      targetRect: offset & renderBox.paintBounds.size,
+      targetRect: adjustedOffset & renderBox.paintBounds.size,
       backgroundColor: backgroundColor,
       arrowColor: arrowColor,
       showArrow: showArrow,
